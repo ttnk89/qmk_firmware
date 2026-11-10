@@ -340,7 +340,8 @@ void sleep_sw_led_show(void) {
  * @brief  sys_led_show.
  */
 void sys_led_show(void) {
-    if (host_keyboard_led_state().caps_lock) {
+    // Caps key is used as a layer toggle, so also light the indicator while layer 3 is active.
+    if (host_keyboard_led_state().caps_lock || layer_state_is(3)) {
         set_left_rgb(0x00, 0x80, 0x80);
     }
 }
